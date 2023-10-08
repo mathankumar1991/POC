@@ -1,0 +1,12 @@
+---
+- hosts: Destinationserver
+  become: true
+  tasks:
+  - name: Copy file from machine to machine2
+    copy:
+     src: /var/lib/jenkins/workspace/new/webapp/target/webapp/index.jsp
+     dest: /tmp
+  - name: Copy file from machine1 to machine2
+    copy:
+     src: webapp/src/main/webapp/index.jsp
+     dest: /tmp/mathan

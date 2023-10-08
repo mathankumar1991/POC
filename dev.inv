@@ -1,0 +1,2 @@
+[Destinationserver]
+192.168.225.33 ansible_user=root
