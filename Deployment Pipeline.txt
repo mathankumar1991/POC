@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+       stages {
+        stage("Clone from Git") {
+            steps {
+                git branch: 'main', url: 'https://github.com/mathankumar1991/POC.git'
+            }
+        }
+        stage("Compile") {
+            steps {
+                sh "mvn clean compile"
+            }
+        }
+         stage("Build") {
+            steps {
+                sh "mvn clean install package"
+            }
+        }
+        stage("Deploy") {
+            steps {
+               sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/Deployment/webapp/target/webapp.war jenkins@192.168.1.9:/var/lib/tomcat/webapps"
+                
+                }
+        }
+    }
+}
